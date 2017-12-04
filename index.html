@@ -16,6 +16,7 @@ html, body {
 
 html {
   display: table;
+  cursor: pointer;
 }
 
 body {
@@ -63,15 +64,15 @@ body {
     <div id="output-time"></div>
   </div>
   <script>
-function toggleFullScreen() {
+function toggleFullScreen(element) {
   if ((document.fullScreenElement && document.fullScreenElement !== null) ||
    (!document.mozFullScreen && !document.webkitIsFullScreen)) {
-    if (document.documentElement.requestFullScreen) {
-      document.documentElement.requestFullScreen();
-    } else if (document.documentElement.mozRequestFullScreen) {
-      document.documentElement.mozRequestFullScreen();
-    } else if (document.documentElement.webkitRequestFullScreen) {
-      document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+    if (element.requestFullScreen) {
+      element.requestFullScreen();
+    } else if (element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullScreen) {
+      element.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
     }
   } else {
     if (document.cancelFullScreen) {
@@ -120,7 +121,9 @@ setInterval(function () {
 updateDatetime(dateOutputElement, timeOutputElement, getDisplayDatetime(startTime));
 
 // On click anywhere, toggle fullscreen
-document.body.addEventListener('click', toggleFullScreen);
+document.body.addEventListener('click', function() {
+  toggleFullScreen(document.documentElement);
+});
     </script>
   </body>
 </html>
