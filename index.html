@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Spectral+SC" rel="stylesheet">
+    <title>Minouteur</title>
+    <style>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  display: table;
+}
+
+body {
+  display: table-row;
+}
+
+#display {
+  font-family: 'Spectral SC', serif;
+  font-size: 2rem;
+  font-size: 5vw;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.decorator {
+  color: #ccc;
+}
+
+.decorator::after {
+  content: '~';
+  display: block;
+  color: #ddd;
+}
+    </style>
+  </head>
+<body>
+  <div id="display">
+    <div class="decorator">La Minoute</div>
+    <div id="output"></div>
+  </div>
+  <script>
+function getDisplayDate(from) {
+  var now = new Date().getTime();
+  return new Date(2 * now - from);
+}
+
+function formatDate(date) {
+  var options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  };
+  return date.toLocaleDateString(window.navigator.language, options);
+}
+
+function updateDate(element, date) {
+  element.innerText = formatDate(date);
+}
+
+// Update date every 1/2 second
+var startTime = new Date(2017, 3, 21, 22).getTime();
+var outputElement = document.getElementById('output');
+setInterval(function () {
+  updateDate(outputElement, getDisplayDate(startTime));
+}, 500);
+
+// And do it now too
+updateDate(outputElement, getDisplayDate(startTime));
+    </script>
+  </body>
+</html>
