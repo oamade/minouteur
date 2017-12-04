@@ -35,6 +35,20 @@ body {
   color: #ccc;
 }
 
+.decorator::before {
+  content: '';
+  display: block;
+  width: 20vw;
+  height: 20vw;
+  background-image: url(cabbage.svg);
+  background-size: 200% 200%;
+  background-position: -8vw -8vw;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  filter: saturate(0);
+
+}
+
 .decorator::after {
   content: '~';
   display: block;
